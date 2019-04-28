@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MusicStore.Models.Genre>
+
+@{
+    Layout = "_LayoutAdmin";
+
+    ViewData["Title"] = "Genres";
+    // Bart Ruymaekers
+}
+
+<h2>Genres</h2>
+<h4>Select</h4>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model=>model.Name)
+                <hr>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model){
+            var vGenreId = item.GenreID;
+            <tr>
+                <td>
+                    <a asp-controller="Store" asp-action="ListAlbums" asp-route-id="@vGenreId">@Html.DisplayFor(modelItem => item.Name)</a>
+                    <hr>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Home Page Music Store";
+}
+<style>
+    .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        column-gap: 10px;
+        row-gap: 20px;
+    }
+
+    div.gallery img {
+        width: 90%;
+        height: auto;
+    }
+
+</style>
+@*<style>
+    .centered {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color:lightskyblue;
+    }
+</style>
+<body>
+    <div class="centered">
+       <img src="~/images/logo.png" alt="logo" />
+    </div>
+</body>*@
+
+<div class="jumbotron" style="background-color:lightblue">
+    <div class="container">
+        <div class="row well well-lg">
+            <div class="col-md-6 col-md-offset-3 centerfy">
+                <div class="">
+                    <img src="~/images/logo.png" class="img-responsive text-center" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="gallery">
+    @foreach (var item in Model)
+    {
+        var image = "~/content/" + item.AlbumArtUrl.ToString();
+        
+    <div class="foto">
+        @*<img src="@Url.Content(image)" />
+        <text>@item.Title</text>*@
+        <a asp-controller="Store" asp-action="Details" asp-route-id="@item.AlbumID">
+            <img src="@Url.Content(image)" />
+        </a>
+        <a asp-controller="Store" asp-action="Details" asp-route-id="@item.AlbumID">
+            <text>@item.Title</text>
+        </a>
+    </div>
+        @*<div class="groep">
+            <text>@item.Title</text>   
+        </div>*@
+
+    }
+</div>

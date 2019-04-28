@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MusicStore.Models.Album>
+
+<style>
+    .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        column-gap: 10px;
+        row-gap: 20px;
+    }
+
+    div.gallery img {
+        width: 90%;
+        height: auto;
+    }
+</style>
+
+@{
+    Layout = "_LayoutAdmin";
+
+    ViewData["Title"] = "Albums";
+    // Bart Ruymaekers
+}
+
+<h2>Albums</h2>
+<h4>@ViewData["Genre"]</h4>
+
+<div class="gallery">
+    @foreach (var item in Model)
+    {
+        var img = "~/content/" + item.AlbumArtUrl.ToString();
+
+    <div class="foto">
+        @*<img src="@Url.Content(img)" />
+        <text>@item.Title</text>*@
+        <a asp-controller="Store" asp-action="Details" asp-route-id="@item.AlbumID">
+            <img src="@Url.Content(img)" />
+        </a>
+        <a asp-controller="Store" asp-action="Details" asp-route-id="@item.AlbumID">
+            <text>@item.Title</text>
+        </a>
+    </div>
+    }
+
+</div>
